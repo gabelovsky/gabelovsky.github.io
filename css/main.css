@@ -1,0 +1,64 @@
+
+html { height: 100%; }
+
+
+
+body {
+	background-image: url("/sourcefiles/gray.png");
+    margin: 0px auto;
+	width: 60%;
+	height: 100%;
+	overflow:hidden;
+}
+
+
+div.backpage{
+	background: #ccc;
+	padding: 20px 0px;
+	height: 100%;
+}
+
+div.stuff{
+	float:left;
+	width:70%;
+}
+div.profile{
+	float:right;
+	width:30%;
+}
+
+
+
+footer{
+	clear:both;
+}
+
+
+ul {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #994d00;
+}
+ul li {
+    float: left;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+
+
+ul li a:hover:not(.current) {
+    background-color: #000000;
+}
+ul li a.current{
+	 background-color: #331a00;
+}

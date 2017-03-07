@@ -1,0 +1,11 @@
+			<nav>
+	    		<ul>
+					<li><a href="/" {% if page.url == "/" %}class="current"{% endif %}>Home</a></li>
+					<li><a href="/me"{% if page.url == "/me/" %}class="current"{% endif %}>My life</a></li>
+	        		<li><a href="/cv"{% if page.url == "/cv/" %}class="current"{% endif %}>Curriculum</a></li>
+					<li><a href="/post"{% if page.url == "/post/" %}class="current"{% endif %}>Posts</a></li>
+					<li><a href="/webpub"{% if page.url == "/webpub/" %}class="current"{% endif %}>Web. Publishings</a></li>
+					<li><a href="/contacts"{% if page.url == "/contacts/" %}class="current"{% endif %}>Contacts</a></li>
+					
+	    		</ul>
+			</nav>
