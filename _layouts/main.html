@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-		<title>{{ page.title }}</title>
-		<link rel="stylesheet" href="/css/main.css">
-</head>
+---
+layout: def
+---
 
 
-<body>
-<div class="backpage">
-{% include header.html %}
+
 
 <div class="stuff">
-		{{ content }}
+	{{ content }}
 </div>
-<div class="profile">splitted</div>
-
-{%include footer.html %}
+<div class="profile">
+<ul>
+	<img src={{site.pic}} alt="Myself in all my glory">
+		<p><b>Check me out on:</b></p>
+		<div class="links">
+			<ul>
+				<li><a href="http://facebook.com/gergely.abelovsky" class="fa fa-facebook"></a></li>
+				<li><a href="https://plus.google.com/107828232500896647929" class="fa fa-google"></a></li>
+				<li><a href="https://www.linkedin.com/in/gergely-abelovsky-88539212b/" class="fa fa-linkedin"></a></li>
+			</ul>
+	</div>
+</ul>
 </div>
-</body>
-</html>
 

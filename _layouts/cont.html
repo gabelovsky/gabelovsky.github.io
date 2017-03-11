@@ -1,0 +1,21 @@
+---
+layout: def
+---
+
+	<div class="stuff">
+		{{ content }}
+	</div>
+	<div class="contacts">
+		<p class="mail">Email:   <a href={{page.mailto}}>{{page.email}}</a></p>
+		<p>Phone:   {{page.phone}}</p>
+	</div>
+	<br>
+	<hr>
+	<form action="https://script.google.com/macros/s/AKfycbz4B8g5rPKM9w-fD-XGa-krkHOEK9lXyla1aVv3pc41dAohC2Oz/exec" method="POST">
+		<p>Your e-mail:</p>
+		<input type="text" name="mail"><br>
+		<p>Topic:</p>
+		<input type="text" name="topic"><br><br>
+		<textarea name="text"></textarea><br>
+		<input class="button" type="submit" value="Send">
+	</form>

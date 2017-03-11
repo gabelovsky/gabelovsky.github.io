@@ -1,0 +1,51 @@
+@import url("background.css");
+@import url("hfoot.css");
+.stuff p{
+	font-size:150%;
+	font-weight: bold;
+	
+}
+
+div.backpage{
+	margin:auto;
+	text-align:center;
+	
+}
+div.contacts{
+	text-align:left;
+	padding:0 0 0 25%;
+}
+
+
+div.stuff{
+	margin:50px 0px;
+}
+
+form{
+	position: relative;
+	text-align:center;
+}
+
+form input{
+  display:block;
+  position: absolute;
+  left: 25%;
+
+}
+form p{
+	text-align:left;
+	text-indent:25%;
+}
+
+
+form input.button{
+	cursor:pointer;
+	width:20%;
+	height:30px;
+}
+
+form textarea{
+	width:50%;
+	height:300px;
+	resize: none;
+}
