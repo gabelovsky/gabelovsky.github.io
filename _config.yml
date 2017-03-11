@@ -1,7 +1,7 @@
 name: Gergely Abelovsky
 markdown: kramdown
 url: gabelovsky.github.io
+permalink: /blog/:year/:month/:day/:title
 pic: "/sourcefiles/profile.png"
-
 
 

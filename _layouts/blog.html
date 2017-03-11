@@ -1,0 +1,30 @@
+---
+layout: def
+---
+
+
+<div class="stuff">
+	{{content}}
+	<table>
+		<tr>
+			<th>Date posted</th>
+			<th>Title</th> 
+			<th>Tags</th>
+		</tr>
+		{% for post in site.posts %}
+			 <tr>
+				<td>{{ post.date | date_to_string }}</td>
+				<td><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></td>
+				<td>
+				{% for tag in post.tags %}
+					{{tag}}
+				{% endfor %}
+				</td>
+			 </tr>
+		{% endfor %}
+	</table>
+	
+ 
+	
+	
+</div>
