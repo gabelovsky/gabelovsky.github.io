@@ -1,0 +1,24 @@
+table, th, td {
+    border-collapse: collapse;
+	border:1px solid black;
+	
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+	 opacity: 1;
+  }
+}
+
+details[open] table {
+  animation-name:  fade;
+  animation-duration: 1000ms;
+  animation-delay: 0;
+}
+
+summary{
+	cursor:pointer;
+}

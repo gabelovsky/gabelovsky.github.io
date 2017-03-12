@@ -1,11 +1,48 @@
 ---
 layout: main
-title: About me
+title: My skills
 styles:
+- data.css
 - main.css
 - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
 ---
-<div>
-	<h1>stuff about me</h1>
-	
-</div>
+<h2>{{page.title}}</h2>
+<p>My skills are listed below but I'm always eager to learn and discover new technologies.</p>
+<h3>Grades</h3>
+<details>
+<summary>My grades through my attendance:</summary>
+<table>
+<tr>
+<th>Subject:</th>
+{% for grd in site.data.grades %}
+	<td>{{grd.subject}}</td>
+{% endfor %}
+</tr>
+<th>Grade:</th>
+{% for grd in site.data.grades %}
+	<td>{{grd.grade}}</td>
+{% endfor %}
+</tr>
+</table>
+</details>
+<h3>Skills</h3>
+<details>
+<summary>My current computer skills:</summary>
+<table>
+<tr>
+<th>Language:</th>
+{% for skll in site.data.skills %}
+	<td>{{skll.language}}</td>
+{% endfor %}
+</tr>
+<th>Level:</th>
+{% for skll in site.data.skills %}
+	<td>{{skll.level}}</td>
+{% endfor %}
+</tr>
+</table>
+</details>
+<h3>BC work</h3>
+<p>My balchelors thesis will analyse and implement a program for modelling network traffic data. The program will be able to import real traffic data and do analysis on it, based on the selected modelling method.
+It will have a graphical interface, both for easier usage and visualization.</p><p>The prototype looks like this:</p>
+<img src="/sourcefiles/prot.png" alt="Early stuff" style="width:50%;height:50%;">
