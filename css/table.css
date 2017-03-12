@@ -1,0 +1,29 @@
+
+table {
+    border-collapse: collapse;
+	width:100%;
+	text-align:left;
+}
+
+
+div.table{
+	overflow:auto;
+}
+
+th{
+	background-color: #333333;
+	color: white;
+	
+}
+
+th, td {
+    padding: 10px;
+	border-bottom: 3px solid black;
+}
+
+th.date{
+	width:15%;
+}
+th.title{
+	width:30%;
+}

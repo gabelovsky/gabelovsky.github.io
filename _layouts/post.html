@@ -1,7 +1,19 @@
 ---
 layout: def
 ---
-<h1>this is a post {{page.title}}</h1>
 <div class="post">
+<p class="date">{{page.date | date_to_long_string}}</p>
+<p class="title">{{page.title}}</p>
+<div class="stuff">
 	{{ content }}
+</div>
+<p class="tags">Tags: 
+{% for tag in page.tags %}
+<p class="tag">
+{{tag}}
+</p>
+{% endfor %}
+</p>
+
+
 </div>

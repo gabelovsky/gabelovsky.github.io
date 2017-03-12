@@ -5,25 +5,35 @@ layout: def
 
 <div class="stuff">
 	{{content}}
+	<div class="table">
+	{% assign posted = false %}
 	<table>
 		<tr>
-			<th>Date posted</th>
-			<th>Title</th> 
-			<th>Tags</th>
+			<th class="date">Date posted</th>
+			<th class="title">Title</th> 
+			<th class="tags">Tags</th>
 		</tr>
 		{% for post in site.posts %}
-			 <tr>
-				<td>{{ post.date | date_to_string }}</td>
-				<td><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></td>
-				<td>
-				{% for tag in post.tags %}
-					{{tag}}
-				{% endfor %}
-				</td>
-			 </tr>
+			{% for tag in post.tags %}
+				{% if tag == page.blogtag or page.blogtag == "any"  %}
+				{% if posted == false %}
+				{% assign posted = true%}
+				<tr>
+					<td>{{ post.date | date_to_string }}</td>
+					<td><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></td>
+					<td>
+					{% for tag in post.tags %}
+						{{tag}}
+					{% endfor %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endif %}
+			{% endfor %}
+			{% assign posted = false %}
 		{% endfor %}
 	</table>
-	
+	</div>
  
 	
 	
