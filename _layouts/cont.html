@@ -6,7 +6,7 @@ layout: def
 		{{ content }}
 	</div>
 	<div class="contacts">
-		<p class="mail">Email:   <a href={{page.mailto}}>{{page.email}}</a></p>
+		<p class="mail">Email:   <a href={{"mailto:"|append:page.email}}>{{page.email}}</a></p>
 		<p>Phone:   {{page.phone}}</p>
 	</div>
 	<br>

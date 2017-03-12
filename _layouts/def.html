@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-{% strip %}
 <html>
 <head>
-			<title>{{ page.title }}</title>
+		<title>{{ page.title }}</title>
 		{% if page.styles == null %}
 			<link rel="stylesheet" href="/css/main.css">
 		{% else %}
@@ -17,7 +16,7 @@
 		{% if page.layout == "post" %}
 			<link rel="stylesheet" href="/css/post.css">
 		{% endif %}
-		
+		<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
 </head>
 <body>
 <div class="backpage">
@@ -29,4 +28,3 @@
 </div>	
 </body>
 </html>
-{% endstrip %}
