@@ -1,0 +1,23 @@
+html { height: 100%; }
+
+
+
+body {
+	background: #585a5a;
+	background-image: url("/sourcefiles/gray.png");
+  	  margin: 0px auto;
+	width: 60%;
+	height: 100%;
+	overflow:hidden;
+}
+
+
+div.backpage{
+	background: #ccc;
+	padding: 20px 0px;
+	height: 100%;
+	
+}
+
+
+	
