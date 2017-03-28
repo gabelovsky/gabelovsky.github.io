@@ -5,19 +5,41 @@ html { height: 100%; }
 body {
 	background: #585a5a;
 	background-image: url("/sourcefiles/gray.png");
-  	  margin: 0px auto;
-	width: 60%;
-	height: 100%;
+	margin:0px;
+	height:100%;
+	width:100%;
 	overflow:hidden;
+	font-family: Helvetica,sans-serif;
 }
 
 
 div.backpage{
 	background: #ccc;
-	padding: 20px 0px;
+	padding: 1% 0 0 0;
 	height: 100%;
+	width:60%;
+	margin:0 auto;
+	overflow:auto;
+	
 	
 }
 
 
+
+div.wrap{
+	min-height: 99%;
 	
+	
+	
+}
+div.footer{
+	position: relative;
+	margin-top: -5%; 
+	height: 5%;
+	clear:both;
+}
+
+div.content{
+	display:flex;
+	padding-bottom:  5%;
+}

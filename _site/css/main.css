@@ -7,13 +7,10 @@ body::after{
 
 
 
-div.content{
-	display:flex;
-}
 
 
 div.stuff{
-	padding:10px 20px 10px 20px;
+	padding:1% 2% 1% 2%;
 	flex:1;
 }
 
@@ -51,7 +48,6 @@ ul{
 }
 .links ul li a{
 	text-decoration: none;
-	
 }
 
 

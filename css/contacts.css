@@ -6,11 +6,16 @@
 	
 }
 
+div.content{
+	display:block;
+}
+
 div.backpage{
 	margin:auto;
 	text-align:center;
 	
 }
+
 div.contacts{
 	text-align:left;
 	padding:0 0 0 25%;
@@ -18,6 +23,7 @@ div.contacts{
 
 
 div.stuff{
+	margin:0 auto;
 	margin:50px 0px;
 }
 
