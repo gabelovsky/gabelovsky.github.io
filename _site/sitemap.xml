@@ -1,39 +1,43 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://localhost:4000/blog/2017/03/10/first-post</loc>
+        <loc>gabelovsky.github.io/blog/2017/03/10/first-post</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/blog/2017/03/11/second</loc>
+        <loc>gabelovsky.github.io/blog/2017/03/11/second</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/blog/2017/03/12/wpub-post</loc>
+        <loc>gabelovsky.github.io/blog/2017/03/12/wpub-post</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/blog/</loc>
+        <loc>gabelovsky.github.io/blog/2017/03/28/wpub-post-second</loc>
+        <lastmod>2017-03-28T19:43:56+02:00</lastmod>
+    </url>
+    <url>
+        <loc>gabelovsky.github.io/blog/</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/contacts/</loc>
+        <loc>gabelovsky.github.io/contacts/</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/cv/</loc>
+        <loc>gabelovsky.github.io/cv/</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/me/</loc>
+        <loc>gabelovsky.github.io/me/</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/wpub/</loc>
+        <loc>gabelovsky.github.io/wpub/</loc>
         <lastmod>2017-03-14T17:42:11+01:00</lastmod>
     </url>
     <url>
-        <loc>http://localhost:4000/</loc>
-        <lastmod>2017-03-14T17:42:11+01:00</lastmod>
+        <loc>gabelovsky.github.io/</loc>
+        <lastmod>2017-03-28T19:43:56+02:00</lastmod>
     </url>
 </urlset>
