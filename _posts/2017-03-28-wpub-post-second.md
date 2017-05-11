@@ -22,7 +22,7 @@ Note2: the mathematical function, the tables and the bibliography was imported f
 ##### 1. Breakdown of text to sections, subsections and subsubsections, appendix and generated content
 The document is broken down to the said sections:
 
-![image of breakdown](https://github.com/gabelovsky/gabelovsky.github.io/tree/master/sourcefiles/breakdown.pgn)
+![image of breakdown](https://github.com/gabelovsky/gabelovsky.github.io/sourcefiles/breakdown.pgn)
 
 The subsections were created using the hierarchy used in DocBook:
 
