@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>WPUB3</title>
+		
+			<link rel="stylesheet" href="/css/main.css">
+		
+		
+			<link rel="stylesheet" href="/css/post.css">
+		
+		<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
+</head>
+<body>
+<div class="backpage">
+	<div class="wrap">
+	
+				<nav>
+	    		<ul class="header">
+					<li><a href="/" >Home</a></li>
+					<li><a href="/me">My skills</a></li>
+	        		<li><a href="/cv">Curriculum</a></li>
+					<li><a href="/blog">Blog</a></li>
+					<li><a href="/wpub">Web. Publishings</a></li>
+					<li><a href="/contacts">Contacts</a></li>
+					
+	    		</ul>
+			</nav>
+	<div class="content">
+		<div class="post">
+<p class="date">11 May 2017</p>
+<p class="title">WPUB3</p>
+<div class="stuff">
+	<h3 id="project">Project:</h3>
+<p>The goal of the third project is to create XSL transformation files for generating XHTML+CSS and PDF presentations from XML formated files.
+The requirements of the project:</p>
+<ol>
+  <li>Presentation in well-formed and valid XML formated</li>
+  <li>Validation and description of the XML using DTD, XML Schema or RELAX NG</li>
+  <li>XSL transformation from XML to XHTML and CSS files</li>
+  <li>XSL transformation from XML to a PDF file</li>
+</ol>
+
+<hr />
+
+<h3 id="documentation">Documentation:</h3>
+<p>The html.bat and pdf.bat files were created for XSL transformation. The presSchema.xsd file validates the XML presentation, using XML Schema. All these files are included in the archive in AIS.<br />
+For the transformations Saxon 9.7.0.18 was used, for generating the PDF the RenderX processor was used. <br />
+Note: The transformations do not use any parameters, as I was able to do everything I wanted without using any parameters (such as using <code class="highlighter-rouge">&lt;style&gt;</code> insted of formating using a parameter).</p>
+<h5 id="1-the-presentation-xml">1. The presentation XML</h5>
+<p>The presentation is defined by the XML Schema file, described in the 2. section. While the requirements on the course page state, that the document has to be firstly descibed (DTD, XML Schema …), I will demonstrate the description in XML form, since its easier to read.<br />
+The structure of the presentation is given as follows:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;presentation&gt;</span>
+	<span class="nt">&lt;data&gt;</span>
+		<span class="nt">&lt;title&gt;&lt;/title&gt;</span> - must have, the title of the presentation
+		<span class="nt">&lt;author&gt;&lt;/author&gt;</span> - optional, the name of the author
+	<span class="nt">&lt;/data&gt;</span>
+	
+	<span class="nt">&lt;slide&gt;</span> - any number of slides, at least 
+		<span class="nt">&lt;title&gt;&lt;title/&gt;</span> - optional, title of the slide
+		...
+		<span class="nt">&lt;presElements&gt;&lt;presElements/&gt;</span> - any number of presentation elements in any order
+		...
+		<span class="nt">&lt;pagenumber/&gt;</span> - optional, display page number
+		<span class="nt">&lt;style&gt;</span> - optional, local style
+			...
+			<span class="nt">&lt;styleElements&gt;&lt;styleElements/&gt;</span> - any number of style elements in any order
+			...
+		<span class="nt">&lt;/style&gt;</span>
+	<span class="nt">&lt;/slide&gt;</span>
+	...
+	<span class="nt">&lt;style&gt;</span> - global style
+		...
+		<span class="nt">&lt;styleElements&gt;&lt;styleElements/&gt;</span> - any number of style elements in any order
+		...
+	<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/presentation&gt;</span>
+</code></pre>
+</div>
+
+<p>The data element includes the metadata about the presentation, currently only the title and author. The presentation must have a title, since the HTML version is generated into a folder based on the title. This also means the title has to be a valid folder name.<br />
+Any number of <code class="highlighter-rouge">&lt;slide&gt;</code> elements can be defined. Has attribute “layout”. <br />
+The layout attribut can have values “title”, “raw” and “split”. The title layout centers all elements on the page. The raw layout has two blocks, a top and a default(left) block, elements defined by the pos attribute and the title are included in the top block, other are simply put in the default block. The split layout splits the default block into 3 other block left, center and right, in addition to the top block.<br />
+The <code class="highlighter-rouge">&lt;title&gt;</code> element has to be the first, and can only be used once in a slide. If it is left empty, it will display the presentation title. Has attribute “pos”.</p>
+
+<p>The presentation elements used:</p>
+<ul>
+  <li><code class="highlighter-rouge">&lt;author&gt;</code> - Has different style than the other text and title, if left empty it display the presentation author. Has attribute “pos”.</li>
+  <li><code class="highlighter-rouge">&lt;text&gt;</code> - Simple text element, new text elements are displayed on new line. Has attributes “pos” and “id”.</li>
+  <li><code class="highlighter-rouge">&lt;toc&gt;</code> - Generates Table of Content, by grabbing every non empty <code class="highlighter-rouge">&lt;title&gt;</code> element from the presentation. Has attribute “pos”.</li>
+  <li><code class="highlighter-rouge">&lt;picture&gt;</code> - Graphical element, containing the url of a file. Has attributes “pos” and “id”.</li>
+  <li><code class="highlighter-rouge">&lt;space&gt;</code> - Horizontal space(empty line). Has attribute “pos”.</li>
+  <li><code class="highlighter-rouge">&lt;list&gt;</code> - An ordered or unordered list, based on the marking attribute. Has attributes “pos”, “id” and “marking”.</li>
+  <li><code class="highlighter-rouge">&lt;item&gt;</code> - An item in the list. Holds only text content. Has attribute “id”.</li>
+  <li><code class="highlighter-rouge">&lt;pagenumber/&gt;</code> - If defined the page/slide number is created at the bottom of the page. Has to be the last element before the <code class="highlighter-rouge">&lt;style&gt;</code> element and has to be empty.</li>
+</ul>
+
+<p>The attributes used:</p>
+
+<p>“pos” - defines for the split and raw layouts, where the element is located. Can be “top”, “left”, “center” and “right”.<br />
+“id” - used for applying styles to specific elements, doesn’t have to be unique, but has to be a valid XML name.<br />
+“marking” - the marking of the list, has values “disc”, “circle” and “square” for unordered list and values “1”, “a”, “A”, “i” and “I” for ordered list.</p>
+
+<p>The <code class="highlighter-rouge">&lt;style&gt;</code> element contains the styling of the presentation. The <code class="highlighter-rouge">&lt;style&gt;</code> defined in the <code class="highlighter-rouge">&lt;presentation&gt;</code> element apllies to the whole presentation. The <code class="highlighter-rouge">&lt;style&gt;</code> defined in a <code class="highlighter-rouge">&lt;slide&gt;</code> only applies to that slide.<br />
+The style elements give the style for a group of presentation elements, by using valid CSS definitions, and have the form:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;style&gt;</span>
+	...
+	<span class="nt">&lt;elementName&gt;</span>
+		...
+		<span class="nt">&lt;cssAttributeName&gt;</span>cssAttributeValue<span class="nt">&lt;/cssAttributeName&gt;</span> - any number
+		...
+	<span class="nt">&lt;/elementName&gt;</span>
+	...
+	Example:
+	<span class="nt">&lt;text</span> <span class="na">id=</span><span class="s">"textId1"</span> <span class="na">pos=</span><span class="s">"center"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;color&gt;</span>red<span class="nt">&lt;/color&gt;</span>
+		<span class="nt">&lt;font-size&gt;</span>200%<span class="nt">&lt;/font-size&gt;</span>
+	<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre>
+</div>
+
+<p>If the style element has no attributes it is applied to every element of that type in the slide/presentation. This can be further specified by using the “pos” and “id” attributes. The example given applies the style to every text element which are located in “center” or the ones which have the id “textId1”.
+Every presentation element can be used as style element, with their defined attributes, with the exception of <code class="highlighter-rouge">&lt;pagenumber/&gt;</code> and <code class="highlighter-rouge">&lt;space&gt;</code>, which have no style definition.
+The <code class="highlighter-rouge">&lt;toc&gt;</code> element is a special case, since its style is only applied from the global <code class="highlighter-rouge">&lt;style&gt;</code> element.
+In addition to these, two new style elements are defined. <code class="highlighter-rouge">&lt;text-all&gt;</code> applies the defined styles to every text element and <code class="highlighter-rouge">&lt;page&gt;</code> applies styles to the page, such as background.</p>
+
+<hr />
+<h5 id="2-document-definition">2. Document definition</h5>
+<p>The presentation was defined using XML Schema, contained in the presSchema.xsd file. 
+An example of the definition of the slide:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;xs:complexType</span> <span class="na">name=</span><span class="s">"slideType"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;xs:sequence&gt;</span>
+		<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"title"</span> <span class="na">type=</span><span class="s">"titleType"</span>  <span class="na">maxOccurs=</span><span class="s">"1"</span> <span class="na">minOccurs=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+		<span class="nt">&lt;xs:choice</span> <span class="na">maxOccurs=</span><span class="s">"unbounded"</span> <span class="na">minOccurs=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"space"</span> <span class="na">type=</span><span class="s">"spaceType"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"toc"</span> <span class="na">type=</span><span class="s">"titleType"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"text"</span> <span class="na">type=</span><span class="s">"textType"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"author"</span> <span class="na">type=</span><span class="s">"titleType"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"picture"</span> <span class="na">type=</span><span class="s">"picType"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"list"</span> <span class="na">type=</span><span class="s">"listType"</span><span class="nt">/&gt;</span>
+		<span class="nt">&lt;/xs:choice&gt;</span>
+		<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"pagenumber"</span> <span class="na">type=</span><span class="s">"emptyType"</span> <span class="na">maxOccurs=</span><span class="s">"1"</span> <span class="na">minOccurs=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+		<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">"style"</span> <span class="na">type=</span><span class="s">"styleType"</span> <span class="na">maxOccurs=</span><span class="s">"1"</span> <span class="na">minOccurs=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/xs:sequence&gt;</span>	
+	<span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">"layout"</span> <span class="na">type=</span><span class="s">"layAtt"</span> <span class="na">use=</span><span class="s">"optional"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/xs:complexType&gt;</span>
+</code></pre>
+</div>
+
+<p>The schema currently validates any tags, and not only valid CSS tags for the styles:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;xs:complexType</span> <span class="na">name=</span><span class="s">"cssBothType"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;xs:sequence</span> <span class="na">maxOccurs=</span><span class="s">"unbounded"</span> <span class="na">minOccurs=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;xs:any</span> <span class="na">processContents=</span><span class="s">"lax"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/xs:sequence&gt;</span>
+	<span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">"id"</span> <span class="na">type=</span><span class="s">"xs:Name"</span> <span class="na">use=</span><span class="s">"optional"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;xs:attribute</span> <span class="na">name=</span><span class="s">"pos"</span> <span class="na">type=</span><span class="s">"posAtt"</span> <span class="na">use=</span><span class="s">"optional"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/xs:complexType&gt;</span>
+</code></pre>
+</div>
+
+<hr />
+<h5 id="3-xsl-transformation-from-xml-to-xhtml-and-css-files">3. XSL transformation from XML to XHTML and CSS files</h5>
+<p>This transformation is done by the html.bat file, and is defined in the presXhtml.xsl file, with the presentation XML as the only argument. This process creates a new folder, based on the title element in the data element. The content of the presentation is saved in this folder.<br />
+Each slide element is created into a new file, called slideX.html (the first slide is slide1.html etc.). These slides are valid XHTML files, without any stylization include. However each file contains links to CSS files: to the main.css fr every slide and to a styleX.css, if the style element was defined (or specific layouts were used).<br />
+The CSS files are generated by the same transformation. The main.css contains the style for the whole presentation and formating and default definitions (such as the ToC format and layout elements), so it is important to have, even if no style is defined. The styleX.css files contain the style of the page and the layout of the page.<br />
+In addition, navigation arrows are created on each page, linking to the next and previous HTML files.<br />
+Note: I was unable to copy image files using XSL transformations, so pictures used in the presentation have to be manually copied to the created folder.</p>
+
+<hr />
+<h5 id="4-xsl-transformation-from-xml-to-a-pdf-file">4. XSL transformation from XML to a PDF file</h5>
+<p>This transformation is done by the pdf.bat file, and is defined in the presPdf.xsl file, with the presentation XML as the only argument. This process creates a new file, called result.pdf, which contains the whole presentation.<br />
+Unlike for the XHTML transformation, no style objects are generated, the style is directly applied to the given elements (the same way as for the XHTML), and is saved in the FO file. <code class="highlighter-rouge">&lt;xsl:fo&gt;</code> supports valid CSS definitions on each element, both for styling and positioning.<br />
+For applying background, the <code class="highlighter-rouge">&lt;fo:region-before&gt;</code> region was used. Which means this region is set as <code class="highlighter-rouge">&lt;fo:flow&gt;</code>, meaning too much content with pos=”top” can generate unwanted slides.<br />
+This is a main difference from the XHTML+CSS version, since HTML allows the zones to stretch, <code class="highlighter-rouge">&lt;xsl:fo&gt;</code> has constant definitions. Another differnce is how the layouts work, since for the “raw” layout in HTML, the other 3 block are present, but their content can overleap, which is not possible using <code class="highlighter-rouge">&lt;xsl:fo&gt;</code>. There are further small differences, mostly the different application of CSS (such as different supported font-families etc).</p>
+
+
+</div>
+<p class="tags">Tags: 
+
+<p class="tag">
+wpub
+</p>
+
+</p>
+
+
+</div>
+	</div>
+	</div> 	
+			<div class="footer">
+				<ul class="footer">
+					<meta>Site created by Gergely Abelovsky </meta>
+					<meta>- Generated using Jekyll at 11-05-2017  12:17 </meta>
+				</ul>
+		</div>
+</div>
+</body>
+</html>
